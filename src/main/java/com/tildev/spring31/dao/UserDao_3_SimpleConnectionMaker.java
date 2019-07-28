@@ -11,16 +11,16 @@ import com.tildev.spring31.domain.UserVo;
  * @author tildev
  * @date 2019. 7. 28.
  */
-public class UserDao {
+public class UserDao_3_SimpleConnectionMaker {
 
-	private ConnectionMaker connectionMaker;
+	private SimpleConnectionMaker simpleConnectionMaker;
 
-	public UserDao(ConnectionMaker connectionMaker) {
-		this.connectionMaker = connectionMaker;
+	public UserDao_3_SimpleConnectionMaker() {
+		simpleConnectionMaker = new SimpleConnectionMaker();
 	}
 
 	public void add(UserVo user) throws ClassNotFoundException, SQLException {
-		Connection c = connectionMaker.makeConnection();
+		Connection c = simpleConnectionMaker.makeNewConnection();
 
 		PreparedStatement ps = c.prepareStatement("insert into users(user_id, user_name, user_password) values(?,?,?)");
 		ps.setString(1, user.getUserId());
@@ -32,7 +32,7 @@ public class UserDao {
 	}
 
 	public UserVo get(String userId) throws ClassNotFoundException, SQLException {
-		Connection c = connectionMaker.makeConnection();
+		Connection c = simpleConnectionMaker.makeNewConnection();
 
 		PreparedStatement ps = c.prepareStatement("select * from users where user_id = ?");
 		ps.setString(1, userId);
@@ -52,4 +52,24 @@ public class UserDao {
 		return user;
 	}
 
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		UserDao_3_SimpleConnectionMaker dao = new UserDao_3_SimpleConnectionMaker();
+
+		UserVo user = new UserVo();
+
+		user.setUserId("idE");
+		user.setUserName("nameE");
+		user.setUserPassword("passwordE");
+
+		dao.add(user);
+
+		System.out.println(user.getUserId() + " 등록 성공!");
+
+		UserVo user2 = dao.get(user.getUserId());
+
+		System.out.println(user2.getUserName());
+		System.out.println(user2.getUserPassword());
+		System.out.println(user2.getUserId() + " 조회 성공!");
+
+	}
 }

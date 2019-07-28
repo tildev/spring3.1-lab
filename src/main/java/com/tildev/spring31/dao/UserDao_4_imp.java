@@ -11,12 +11,12 @@ import com.tildev.spring31.domain.UserVo;
  * @author tildev
  * @date 2019. 7. 28.
  */
-public class UserDao {
+public class UserDao_4_imp {
 
 	private ConnectionMaker connectionMaker;
 
-	public UserDao(ConnectionMaker connectionMaker) {
-		this.connectionMaker = connectionMaker;
+	public UserDao_4_imp() {
+		connectionMaker = new DConnectionMaker();
 	}
 
 	public void add(UserVo user) throws ClassNotFoundException, SQLException {
@@ -52,4 +52,24 @@ public class UserDao {
 		return user;
 	}
 
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		UserDao_4_imp dao = new UserDao_4_imp();
+
+		UserVo user = new UserVo();
+
+		user.setUserId("idE");
+		user.setUserName("nameE");
+		user.setUserPassword("passwordE");
+
+		dao.add(user);
+
+		System.out.println(user.getUserId() + " 등록 성공!");
+
+		UserVo user2 = dao.get(user.getUserId());
+
+		System.out.println(user2.getUserName());
+		System.out.println(user2.getUserPassword());
+		System.out.println(user2.getUserId() + " 조회 성공!");
+
+	}
 }
