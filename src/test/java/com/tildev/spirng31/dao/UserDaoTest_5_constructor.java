@@ -2,20 +2,24 @@ package com.tildev.spirng31.dao;
 
 import java.sql.SQLException;
 
-import com.tildev.spring31.dao.DaoFactory;
+import com.tildev.spring31.dao.ConnectionMaker;
+import com.tildev.spring31.dao.DConnectionMaker;
 import com.tildev.spring31.dao.UserDao;
 import com.tildev.spring31.domain.UserVo;
 
-public class UserDaoTest {
+public class UserDaoTest_5_constructor {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		UserDao dao = new DaoFactory().userDao();
+		ConnectionMaker connectionMaker = new DConnectionMaker();
+//		ConnectionMaker connectionMaker = new NConnectionMaker();
+		
+		UserDao dao = new UserDao(connectionMaker);
 
 		UserVo user = new UserVo();
 
-		user.setUserId("idG");
-		user.setUserName("nameG");
-		user.setUserPassword("passwordG");
+		user.setUserId("idF");
+		user.setUserName("nameF");
+		user.setUserPassword("passwordF");
 
 		dao.add(user);
 
