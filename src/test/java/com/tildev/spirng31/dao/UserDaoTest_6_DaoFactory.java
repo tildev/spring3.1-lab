@@ -2,24 +2,20 @@ package com.tildev.spirng31.dao;
 
 import java.sql.SQLException;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.tildev.spring31.dao.DaoFactory;
-import com.tildev.spring31.dao.UserDao;
+import com.tildev.spring31.dao.DaoFactory_6_DaoFactory;
+import com.tildev.spring31.dao.UserDao_6_DaoFactory;
 import com.tildev.spring31.domain.UserVo;
 
-public class UserDaoTest {
+public class UserDaoTest_6_DaoFactory {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
-		UserDao dao = context.getBean("userDao", UserDao.class);
+		UserDao_6_DaoFactory dao = new DaoFactory_6_DaoFactory().userDao();
 
 		UserVo user = new UserVo();
 
-		user.setUserId("idH");
-		user.setUserName("nameH");
-		user.setUserPassword("passwordH");
+		user.setUserId("idG");
+		user.setUserName("nameG");
+		user.setUserPassword("passwordG");
 
 		dao.add(user);
 

@@ -5,19 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.context.annotation.Bean;
-
 import com.tildev.spring31.domain.UserVo;
 
 /**
  * @author tildev
  * @date 2019. 7. 28.
  */
-public class UserDao {
+public class UserDao_6_DaoFactory {
 
 	private ConnectionMaker connectionMaker;
 
-	public UserDao(ConnectionMaker connectionMaker) {
+	public UserDao_6_DaoFactory(ConnectionMaker connectionMaker) {
 		this.connectionMaker = connectionMaker;
 	}
 
